@@ -63,12 +63,42 @@
       position: absolute;
       top: 50%;
     }
+    .hour-hand{
+      height: 5px;
+      
+    }
+    .minute-hand{
+      height: 4px;
+    }
+    .second-hand{
+      height: 3px;
+      
+    }
 
   </style>
 
   <script>
-
-
+    let second = document.querySelector('.second-hand');
+    let minute = document.querySelector('.min-hand');
+    let hour = document.querySelector('.hour-hand');
+    
+    function moveClock(){
+      const date = new Date();
+      let dateSecond = date.getSeconds();
+      let dateMinute = date.getMinutes();
+      let dateHour = date.getHours();
+      console.log(date.getSeconds())
+      second.style.transformOrigin = "right";
+      second.style.transform = `rotate(${dateSecond*6+90}deg)`;
+      minute.style.transformOrigin = "right";
+      minute.style.transform = `rotate(${(dateMinute*6+90)+(dateSecond/10)}deg)`;  
+      hour.style.transformOrigin = "right";
+      hour.style.transform = `rotate(${(dateHour*30)+(dateMinute/2)+(dateSecond/120)+90}deg)`;
+      
+    }
+    setInterval(moveClock, 1000);
+    
+    
   </script>
 </body>
 </html>
